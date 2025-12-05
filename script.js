@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
 
-    // --- Personality Data ---
 
     const laughs = [
         "Ahaha!", "Hihihi!", "Hohoho!", "Glarghahaha!", "Mouahaha!", "Pffrt!", "Héhéhé...", "Bwahaha!"
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "...bref, je préfère les licornes."
     ];
 
-    // --- Logic ---
 
     function getRandomItem(array) {
         return array[Math.floor(Math.random() * array.length)];
@@ -86,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let content = "";
         const lowerInput = userText.toLowerCase();
 
-        // 1. Specific Triggers (High Priority)
         if (lowerInput.includes("layla")) {
             return `${laugh} Layla... wa dib ! (Layla et le loup, tu l'as ?)`;
         }
@@ -97,19 +94,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return `${laugh} Ça va ? Ça vient ! Comme un boomerang qui ne revient jamais.`;
         }
 
-        // 2. Default Behavior: Echo + Joke (ALWAYS)
 
-        // Clean input to make it look like a topic (remove punctuation)
         let cleanInput = userText.replace(/[?.,!]/g, '').trim();
 
-        // Capitalize first letter
         if (cleanInput.length > 0) {
             cleanInput = cleanInput.charAt(0).toUpperCase() + cleanInput.slice(1);
         } else {
             cleanInput = "Euh";
         }
 
-        // Pick a random joke/absurdity
         let randomJoke = "";
         const responseType = Math.random();
 
@@ -122,15 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (responseType < 0.8) {
             randomJoke = getRandomItem(lifeStories);
         } else {
-            // Mix in interruptions as standalone jokes sometimes
             randomJoke = getRandomItem(uselessAnswers);
         }
 
-        // Construct the final content: "Input... [Joke]"
-        // Example: "L'IA... Savais-tu que les pingouins..."
         content = `${cleanInput}... ${randomJoke}`;
 
-        // Sometimes add a dramatic exaggeration at the end
         if (Math.random() < 0.3) {
             content += " C'EST INCROYABLE !";
         }
@@ -147,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    // Audio Unlock Logic
     let audioUnlocked = false;
     const laughIds = ['laugh-1', 'laugh-2', 'laugh-3', 'laugh-4'];
 
@@ -176,20 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessage(text, true);
         userInput.value = "";
 
-        // Check for exit keywords
         const lowerText = text.toLowerCase();
         if (lowerText.includes("fin") || lowerText.includes("au revoir") || lowerText.includes("bye") || lowerText.includes("stop")) {
             setTimeout(() => {
                 const finalMessageText = "Avant de partir, retiens ceci : L'autonomie est la véritable clé de la liberté. Ne laisse jamais la dépendance guider tes pas. Sois le seul maître de ton destin !";
 
-                // Create a special message container
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message', 'bot-message', 'final-message');
                 chatContainer.appendChild(messageDiv);
 
-                // Typewriter effect
                 let i = 0;
-                const speed = 50; // ms per char
+                const speed = 50;
 
                 function typeWriter() {
                     if (i < finalMessageText.length) {
@@ -198,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         chatContainer.scrollTop = chatContainer.scrollHeight;
                         setTimeout(typeWriter, speed);
                     } else {
-                        // Disable input after typing is done
                         userInput.disabled = true;
                         userInput.placeholder = "Discussion terminée.";
                         document.getElementById('send-btn').disabled = true;
@@ -211,19 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Simulate thinking delay
         const delay = Math.random() * 1000 + 500;
 
         setTimeout(() => {
-            const botResponse = generateResponse(text); // Pass user text here
+            const botResponse = generateResponse(text);
             addMessage(botResponse, false);
 
-            // Play user's MP3 sound (ALWAYS)
-            // Using local file exclusively to ensure reliability
             const audio = document.getElementById('laugh-4');
 
             if (audio) {
-                // Stop others (just in case)
                 laughIds.forEach(id => {
                     const el = document.getElementById(id);
                     if (el && el !== audio) { el.pause(); el.currentTime = 0; }
@@ -235,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     playPromise.catch(e => console.log("Audio play failed:", e));
                 }
 
-                // Stop audio after 5 seconds
                 setTimeout(() => {
                     if (!audio.paused) {
                         audio.pause();
@@ -244,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 5000);
             }
 
-            // Trigger visual animation
             const messages = document.querySelectorAll('.bot-message');
             const lastMessage = messages[messages.length - 1];
             if (lastMessage) {

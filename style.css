@@ -1,22 +1,15 @@
 :root {
     --primary-color: #8B4513;
-    /* Saddle Brown */
     --secondary-color: #D2691E;
-    /* Chocolate */
     --bg-color: #f0f2f5;
     --chat-bg: rgba(245, 222, 179, 0.85);
-    /* Wheat/Parchment tint */
     --user-msg-bg: #CD853F;
-    /* Peru Brown */
     --bot-msg-bg: #FFF8DC;
-    /* Cornsilk - light beige */
     --text-color: #3E2723;
-    /* Dark Brown */
 }
 
 body {
     font-family: 'Comic Neue', 'Inter', sans-serif;
-    /* More comic-like font */
     background-color: var(--bg-color);
     margin: 0;
     display: flex;
@@ -24,7 +17,6 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    /* Background Image: Local File */
     background-image: url('gemini-3-pro-image-preview (nano-banana-pro)_a_enlever_le_mot_Le_co.png');
     background-size: cover;
     background-position: center;
@@ -37,22 +29,18 @@ body {
     max-width: 800px;
     height: 90vh;
     background-color: rgba(255, 255, 255, 0.05);
-    /* Presque transparent - Astérix et Obélix très visibles */
     backdrop-filter: none;
-    /* Aucun flou - image nette */
     border-radius: 25px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     border: 4px solid rgba(139, 69, 19, 0.6);
-    /* Bordure marron épaisse */
     position: relative;
 }
 
 header {
     background: linear-gradient(135deg, #8B4513, #D2691E);
-    /* Même dégradé marron que le thème */
     color: white;
     padding: 20px;
     text-align: center;
@@ -70,7 +58,6 @@ header {
     text-align: center;
 }
 
-/* Chat Icons in Middle of Conversation */
 .chat-icon {
     position: absolute;
     width: 70px;
@@ -84,7 +71,6 @@ header {
     z-index: 10;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     animation: floatIconChat 3s ease-in-out infinite;
-    /* Renamed to avoid conflict */
 }
 
 .chat-icon:hover {
@@ -110,7 +96,6 @@ header {
 
 @keyframes floatIconChat {
 
-    /* Renamed to avoid conflict */
     0%,
     100% {
         transform: translateY(-50%) translateX(0);
@@ -121,7 +106,6 @@ header {
     }
 }
 
-/* Header Icons Styling */
 .header-icon {
     width: 60px;
     height: 60px;
@@ -148,7 +132,6 @@ header {
 
 .right-logo {
     animation: none;
-    /* Pas d'animation sur le logo droit */
 }
 
 @keyframes floatIcon {
@@ -264,7 +247,6 @@ button:active {
     transform: scale(0.95);
 }
 
-/* Scrollbar styling */
 .chat-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -278,7 +260,6 @@ button:active {
     border-radius: 4px;
 }
 
-/* Laugh Animation */
 @keyframes shake {
     0% {
         transform: translate(1px, 1px) rotate(0deg);
@@ -330,10 +311,8 @@ button:active {
     animation-iteration-count: 1;
 }
 
-/* Final Message Styling */
 .final-message {
     background-color: rgba(44, 62, 80, 0.9) !important;
-    /* Dark background for seriousness */
     color: #ecf0f1 !important;
     font-size: 1.1rem;
     font-weight: bold;
